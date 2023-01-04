@@ -1,0 +1,71 @@
+// ------------------------------Solution-------------------------
+
+import java.util.*;
+
+public class Main {
+
+    public static int[][] sort(int[][] arr,int index)           //Sort Function
+    {
+        Arrays.sort(arr, new Comparator<int[]>() {                  //this is the custom comparator to sort the array column wise
+            public int compare(final int[] entry1,
+                               final int[] entry2) {
+
+                // To sort in descending order revert
+                // the '>' Operator
+                if (entry1[index] > entry2[index])
+                    return 1;
+                else
+                    return -1;
+            }
+        });
+        return arr;
+    }
+    public static int[][] fill(int rows,int columns)
+    {
+        int[][] arr=new int[rows][columns];
+        for(int i=0;i<rows;i++)
+        {
+            for(int j=0;j<columns;j++)
+            {
+                //Math.random excludes 101  we take 101 for random number between 0-100
+                //Math.floor will round off the value to lower base
+                arr[i][j]=(int)(Math.floor(Math.random()*101));
+                
+            }
+        }
+        return  arr;
+    }
+
+
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        int rows=s.nextInt();
+        int columns=s.nextInt();
+        int index=s.nextInt();
+
+        int [][] a;
+        a=fill(rows,columns);
+        System.out.println("Before");
+        for(int i=0;i<rows;i++)
+        {
+            for(int j=0;j<columns;j++)
+            {
+                System.out.print(a[i][j]+" ");
+            }
+            System.out.println("");
+        }
+
+        sort(a,index);
+        System.out.println("After");
+        for(int i=0;i<rows;i++)
+        {
+            for(int j=0;j<columns;j++)
+            {
+                System.out.print(a[i][j]+" ");
+            }
+            System.out.println("");
+        }
+
+
+    }
+}
